@@ -2,7 +2,7 @@ import random
 import sys
 
 
-class Prisoner:
+class LearningPrisoner:
     def __init__(self, name="Criminal Scum", q_table=None, epsilon=0.01,
                  will_betray=None, omega_l_rate=0.75, discount_factor=0.8):
         """
