@@ -17,8 +17,8 @@ def predefined_prisoners():
 def q_learning_experiment(n_prisoners=100):
     prisoners = []
     for i in range(n_prisoners):
-        prisoner_id = ''.join(random.choices(string.ascii_uppercase + string.digits, k=3)) +\
-                      '-'.join(random.choices(string.ascii_uppercase + string.digits, k=3))
+        prisoner_id = ''.join(random.choices(string.ascii_uppercase + string.digits, k=3)) + '-' +\
+                      ''.join(random.choices(string.ascii_uppercase + string.digits, k=3))
         prisoners.append(LearningPrisoner("Prisoner "+prisoner_id+str(i)))
     print([prisoner.name for prisoner in prisoners])
     print(prisoners)
