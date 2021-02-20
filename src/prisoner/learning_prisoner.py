@@ -1,10 +1,11 @@
 import random
 import sys
+from .prisoner import Prisoner
 
 
-class LearningPrisoner:
-    def __init__(self, name="Criminal Scum", q_table=None, epsilon=0.01,
-                 will_betray=None, omega_l_rate=0.75, discount_factor=0.8):
+class LearningPrisoner(Prisoner):
+    def __init__(self, name: str = "Criminal Scum", q_table: list[float] = None, epsilon: float = 0.01,
+                 will_betray: bool = None, omega_l_rate: float = 0.75, discount_factor: float = 0.8):
         """
         :param name: name of the prisoner
         :param q_table: q table used by RL which defines the policy. Q_table[0] is the q-value for staying silent,
@@ -12,6 +13,7 @@ class LearningPrisoner:
         :param epsilon: used to define the probability of exploration instead of exploitation
         :param will_betray: true if prisoner betrays, false if prisoner chooses to stay silent
         :param omega_l_rate: parameter influencing the learning rate - learning_rate = 1/(episode_index**omega_l_rate)
+        this was decided based on https://www.jmlr.org/papers/volume5/evendar03a/evendar03a.pdf
         :param learning_rate: defines how fast the q_values will changes
         :param discount_factor: this number diminishes the rewards over time within an episode. Doesn't matter much
         here since we only have 1 reward per episode, but I want to leave it as a param for my OCD's sake
@@ -36,7 +38,7 @@ class LearningPrisoner:
             self.will_betray = bool(random.randint(0, len(self.q_table) - 1))  # random decision if we explore
         self.will_betray = bool(self.q_table.index(max(self.q_table)))  # exploit the environment otherwise
 
-    def go_to_jail(self, time_to_serve):
+    def go_to_jail(self, time_to_serve: int):
         """
         Processes the reward based on the decision made by the prisoner
         :param time_to_serve: time that the prisoner got as a result of their and co-prisoners actions
