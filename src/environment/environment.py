@@ -1,5 +1,5 @@
 class Environment:
-    def __init__(self, prisoner_a, prisoner_b, sentences=None, ):
+    def __init__(self, prisoner_a, prisoner_b, sentences=None):
         """sentences defines the outcomes based on both of the actor's decisions
                         a/b   b1  b2
         e.g. sentences = a1 [[[], []],
