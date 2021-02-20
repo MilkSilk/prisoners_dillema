@@ -1,15 +1,16 @@
 import random
 import sys
+
 from .prisoner import Prisoner
 
 
 class LearningPrisoner(Prisoner):
-    def __init__(self, name: str = "Criminal Scum", q_table: list[float] = None, epsilon: float = 0.01,
+    def __init__(self, name: str = "Criminal Scum", q_table: list = None, epsilon: float = 0.01,
                  will_betray: bool = None, omega_l_rate: float = 0.75, discount_factor: float = 0.8):
         """
         :param name: name of the prisoner
-        :param q_table: q table used by RL which defines the policy. Q_table[0] is the q-value for staying silent,
-        q_table[1] is the q-value for betraying
+        :param q_table: list of float, a q-table used by RL which defines the policy. Q_table[0] is the q-value for
+        staying silent, q_table[1] is the q-value for betraying.
         :param epsilon: used to define the probability of exploration instead of exploitation
         :param will_betray: true if prisoner betrays, false if prisoner chooses to stay silent
         :param omega_l_rate: parameter influencing the learning rate - learning_rate = 1/(episode_index**omega_l_rate)
