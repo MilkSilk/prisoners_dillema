@@ -1,5 +1,5 @@
-from environment import Environment
-from prisoner import Prisoner
+from src.environment.environment import Environment
+from src.prisoner.prisoner import Prisoner
 
 if __name__ == "__main__":
     zapuszkowany_jacek = Prisoner(name="Jacek Jankowiak", decision_weights=[50, 50])
