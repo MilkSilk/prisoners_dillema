@@ -8,12 +8,12 @@ class Prisoner:
         self.name = name
         self.decision_weights = decision_weights
 
-    def will_betray(self):
+    def decide_silence_or_betrayal(self):
         weights_sum = sum(self.decision_weights)
-        return int(random.random() < self.decision_weights[1]/weights_sum)
+        return random.random() < self.decision_weights[1]/weights_sum
 
     def go_to_jail(self, time):
         if time == 0:
             return self.name + " goes free!"
-        return self.name + " goes to jail for "+ str(time)+" years!"
+        return self.name + " goes to jail for " + str(-time)+" years!"
 
