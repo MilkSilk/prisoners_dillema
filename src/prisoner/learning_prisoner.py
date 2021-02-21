@@ -5,7 +5,7 @@ from .prisoner import Prisoner
 
 
 class LearningPrisoner(Prisoner):
-    def __init__(self, name: str = "Criminal Scum", q_table: list = None, epsilon: float = 0.01,
+    def __init__(self, name: str = "Criminal Scum", q_table: list = None, epsilon: float = 0.1,
                  will_betray: bool = None, omega_l_rate: float = 0.75, discount_factor: float = 0.8):
         """
         :param name: name of the prisoner
@@ -36,15 +36,17 @@ class LearningPrisoner(Prisoner):
         assigns boolean value to the will_betray attribute
         """
         if random.random() <= self.epsilon:  # check if we explore
-            self.will_betray = bool(random.randint(0, len(self.q_table) - 1))  # random decision if we explore
-        self.will_betray = bool(self.q_table.index(max(self.q_table)))  # exploit the environment otherwise
+            self.will_betray = bool(random.randint(0, len(self.q_table)))  # random decision if we explore
+        else:
+            self.will_betray = bool(self.q_table.index(max(self.q_table)))  # exploit the environment otherwise
+        return self.will_betray
 
     def go_to_jail(self, time_to_serve: int):
         """
         Processes the reward based on the decision made by the prisoner
         :param time_to_serve: time that the prisoner got as a result of their and co-prisoners actions
         """
-        if not self.will_betray:
+        if self.will_betray is None:
             tb = sys.exc_info()[2]
             raise NoDecisionYetError.with_traceback(tb)
 
@@ -54,6 +56,8 @@ class LearningPrisoner(Prisoner):
         self.q_table[self.will_betray] = self.q_table[self.will_betray] + self.learning_rate \
             * (time_to_serve - self.q_table[self.will_betray])
         self.will_betray = None
+        self.episode_index += 1
+        self.update_learning_rate()
 
     def update_learning_rate(self):
         self.learning_rate = 1 / (self.episode_index ** self.omega_l_rate)
