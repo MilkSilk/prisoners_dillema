@@ -3,5 +3,5 @@ Project based around the prisoners dillema, contains a basic simulator for user 
 
 # usage
 To run the project simply go into /src/runner/main.py and define which function you'd like to use.
-For user defined prisoners (the simulation part) edit the predefined_prisoners() function and call it under if __name__ == "__main__":
+For user defined prisoners (the simulation part) edit the predefined_prisoners() function and call it under if \_\_name\_\_ == "\_\_main\_\_":
 For q-learning just run q_learning_experiment()
