@@ -15,5 +15,5 @@ class Prisoner:
     def go_to_jail(self, time):
         if time == 0:
             return self.name + " goes free!"
-        return self.name + " goes to jail for "+ str(time)+" years!"
+        return self.name + " goes to jail for " + str(-time)+" years!"
 
