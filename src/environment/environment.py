@@ -17,12 +17,12 @@ class Environment:
         self.prisoner_b = prisoner_b
 
     def pass_sentences(self):
-        decision_a = self.prisoner_a.will_betray()
-        decision_b = self.prisoner_b.will_betray()
+        decision_a = self.prisoner_a.decide_silence_or_betrayal()
+        decision_b = self.prisoner_b.decide_silence_or_betrayal()
 
         sentence = self.sentences[decision_a][decision_b]
 
-        prisoner_a_fate = self.prisoner_a.go_to_jail(-sentence[0])
-        prisoner_b_fate = self.prisoner_b.go_to_jail(-sentence[1])
+        prisoner_a_fate = self.prisoner_a.go_to_jail(sentence[0])
+        prisoner_b_fate = self.prisoner_b.go_to_jail(sentence[1])
 
         return prisoner_a_fate, prisoner_b_fate
