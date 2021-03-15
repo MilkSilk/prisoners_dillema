@@ -11,7 +11,9 @@ class Environment:
         if both betray they both get 2 years in prison
         """
         if sentences is None:
-            sentences = [[[-1, -1], [-3, 0]], [[0, -3], [-2, -2]]]
+            sentences = [[[-1, -1], [-3, 0]],
+                         [[0, -3], [-2, -2]]
+                        ]
         self.sentences = sentences
         self.prisoner_a = prisoner_a
         self.prisoner_b = prisoner_b
