@@ -19,6 +19,7 @@ def predefined_prisoners():
 def q_learning_experiment(n_prisoners=100, n_episodes=1000):
     prisoners = []
     for i in range(n_prisoners):
+        # Generates prisoner id's for example: "Prisoner H3D-54A"
         prisoner_id = ''.join(random.choices(string.ascii_uppercase + string.digits, k=3)) + '-' +\
                       ''.join(random.choices(string.ascii_uppercase + string.digits, k=3))
         prisoner_id = "Prisoner "+prisoner_id
@@ -49,7 +50,7 @@ def q_learning_experiment(n_prisoners=100, n_episodes=1000):
 
 if __name__ == "__main__":
     # predefined_prisoners()
-    prisoners = q_learning_experiment(10, 1)
+    prisoners = q_learning_experiment(10, 10)
     q_tables = [prisoner.q_table for prisoner in prisoners]
     silence_q_values = [q[0] for q in q_tables]
     betrayal_q_values = [q[1] for q in q_tables]
@@ -60,3 +61,5 @@ if __name__ == "__main__":
                          }
     print(descriptive_stats)
     print([prisoner.q_table for prisoner in prisoners])
+    for prisoner in prisoners:
+        print(prisoner)
