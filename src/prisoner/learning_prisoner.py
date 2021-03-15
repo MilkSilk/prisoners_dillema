@@ -30,6 +30,9 @@ class LearningPrisoner(Prisoner):
         self.learning_rate = 1 / self.episode_index ** self.omega_l_rate
         self.discount_factor = discount_factor
 
+    def __str__(self):
+        return self.name + " " + str(self.q_table)
+
     def decide_silence_or_betrayal(self):
         """
         Called by the environment to ask a prisoner what's his decision - stay silent or betray co-prisoner
